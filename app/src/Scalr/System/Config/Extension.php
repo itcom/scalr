@@ -596,7 +596,7 @@ class Extension implements IteratorAggregate
                     ->node('server_terminate_timeout', '+3 minutes')
                     ->sub('scripting', false)
                         ->node('logs_storage', 'instance')
-                        ->node('default_instance_log_rotation_period', 3600)
+                        ->node('default_instance_log_rotation_period', 432000)
                         ->node('default_abort_init_on_script_fail', false)
                     ->end()
                     ->sub('global_variables', false)
