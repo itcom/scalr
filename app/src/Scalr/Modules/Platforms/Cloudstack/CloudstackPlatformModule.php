@@ -730,6 +730,9 @@ class CloudstackPlatformModule extends AbstractCloudstackPlatformModule implemen
 
         $sshKey = new SshKey();
         try {
+          $fp = fopen("/tmp/sshkeycreatelock", "w");
+          if (flock($fp, LOCK_EX)) {
+
             if (!$sshKey->loadGlobalByName(
                 $DBServer->envId,
                 $this->platform,
@@ -752,6 +755,9 @@ class CloudstackPlatformModule extends AbstractCloudstackPlatformModule implemen
                     $sshKey->save();
                 }
             }
+            flock($fp, LOCK_UN);
+         }
+
         } catch (Exception $e) {
             \Scalr::getContainer()->logger("CloudStack")->error(new FarmLogMessage($DBServer, "Unable to generate keypair: {$e->getMessage()}"));
         }
