@@ -730,6 +730,7 @@ class CloudstackPlatformModule extends AbstractCloudstackPlatformModule implemen
 
         $sshKey = new SshKey();
         try {
+          // AT - Begin add file locking to prevent duplicate keys
           $fp = fopen("/tmp/sshkeycreatelock", "w");
           if (flock($fp, LOCK_EX)) {
 
@@ -754,6 +755,7 @@ class CloudstackPlatformModule extends AbstractCloudstackPlatformModule implemen
 
                     $sshKey->save();
                 }
+            // AT - END add file locking to prevent duplicate keys
             }
             flock($fp, LOCK_UN);
          }
