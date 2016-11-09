@@ -260,7 +260,9 @@ class Scalr_Role_Behavior
             if ($dbFarmRole) {
                 $scriptingLogTimeout = $dbFarmRole->GetSetting(self::ROLE_BASE_KEEP_SCRIPTING_LOGS_TIME);
                 if (!$scriptingLogTimeout) {
-                    $scriptingLogTimeout = 3600;
+                    // updated from 3600 to 432000 as we found that farm creation via the api does not
+                    // honor the "default_instance_log_rotation_period" value
+                    $scriptingLogTimeout = 432000;
                 }
 
                 $configuration->base = new stdClass();
