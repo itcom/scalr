@@ -43,7 +43,7 @@ class FarmAdapter extends ApiEntityAdapter
         //Allows all entity properties to be converted from entity into data result object.
         //[entityProperty1 => resultProperty1, ... or  entityProperty1, entityProperty2, ...]
         self::RULE_TYPE_TO_DATA     => [
-            'id', 'name', 'comments' => 'description',
+            'id', 'name', '_status' => 'status', 'comments' => 'description',
             '_owner' => 'owner', '_teams' => 'teams',
             '_project' => 'project', '_vpc' => 'vpc', '_timezone' => 'timezone',
             '_launchOrder' => 'launchOrder'
@@ -60,6 +60,19 @@ class FarmAdapter extends ApiEntityAdapter
      * {@inheritdoc}
      */
     protected $entityClass = 'Scalr\Model\Entity\Farm';
+    
+    public function _status($from, $to, $action)
+    {
+        switch ($action) {
+            case static::ACT_CONVERT_TO_OBJECT:
+                /* @var $from Farm */
+                $to->status = $from->status ? static::FARM_STATUS_TERMINATED : static::FARM_STATUS_RUNNING;
+                break;
+
+
+                return [[ 'status' => $status ]];
+        }
+    }
 
     public function _owner($from, $to, $action)
     {
