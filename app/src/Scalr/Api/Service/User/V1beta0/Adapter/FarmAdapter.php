@@ -33,7 +33,9 @@ class FarmAdapter extends ApiEntityAdapter
 
     const LAUNCH_ORDER_SIMULATENOUS = 'simulatenous';
     const LAUNCH_ORDER_SEQUENTIAL = 'sequential';
-
+    const FARM_STATUS_RUNNING = 'running';
+    const FARM_STATUS_TERMINATED = 'terminated';
+    
     /**
      * Converter rules
      *
