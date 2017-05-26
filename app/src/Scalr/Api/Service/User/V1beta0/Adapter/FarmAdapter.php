@@ -68,7 +68,7 @@ class FarmAdapter extends ApiEntityAdapter
         switch ($action) {
             case static::ACT_CONVERT_TO_OBJECT:
                 /* @var $from Farm */
-                $to->status = $from->status ? static::FARM_STATUS_TERMINATED : static::FARM_STATUS_RUNNING;
+                $to->status = $from->status ? static::FARM_STATUS_RUNNING : static::FARM_STATUS_TERMINATED;
                 break;
 
 
