@@ -130,6 +130,7 @@ class Ec2PlatformModule extends AbstractAwsPlatformModule implements \Scalr\Modu
             'd2'  => ['hvm' => true, 'x64' => true],
             'r3'  => ['hvm' => true, 'x64' => true],
             'i2'  => ['hvm' => true, 'x64' => true],
+            'i3'  => ['hvm' => true, 'x64' => true],
             'g2'  => ['ebs' => true, 'hvm' => true, 'x64' => true],
             'hs1' => ['x64' => true],
             'cc2' => ['hvm' => true, 'x64' => true],
@@ -676,6 +677,22 @@ class Ec2PlatformModule extends AbstractAwsPlatformModule implements \Scalr\Modu
                 ]
             ),
 
+            'i3.2xlarge' => array(
+                'name' => 'i3.2xlarge',
+                'ram' => '62464',
+                'vcpus' => '8',
+                'disk' => '1900',
+                'type' => 'SSD',
+                'ebsencryption' => true,
+                'ebsoptimized' => true,
+                'placementgroups' => true,
+                'enhancednetworking' => true,
+                'instancestore' => [
+                    'number' => 2,
+                    'size'   => 800
+                ]
+            ),
+
             'd2.xlarge' => array(
                 'name' => 'd2.xlarge',
                 'ram' => '31232',
@@ -835,8 +852,8 @@ class Ec2PlatformModule extends AbstractAwsPlatformModule implements \Scalr\Modu
         );
 
         static $supportedFamilies = [
-            Aws::REGION_EU_CENTRAL_1 => ['t2','m3','m4','c3','r3','i2'],
-            Aws::REGION_AP_NORTHEAST_2 => ['t2', 'm4', 'c4', 'r3', 'i2', 'd2']
+            Aws::REGION_EU_CENTRAL_1 => ['t2','m3','m4','c3','r3','i2','i3'],
+            Aws::REGION_AP_NORTHEAST_2 => ['t2', 'm4', 'c4', 'r3', 'i2', 'i3', 'd2']
         ];
 
         $filter = isset($supportedFamilies[$cloudLocation]) ? array_flip($supportedFamilies[$cloudLocation]) : null;
