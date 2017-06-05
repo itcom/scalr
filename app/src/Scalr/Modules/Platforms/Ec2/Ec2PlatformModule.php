@@ -688,8 +688,8 @@ class Ec2PlatformModule extends AbstractAwsPlatformModule implements \Scalr\Modu
                 'placementgroups' => true,
                 'enhancednetworking' => true,
                 'instancestore' => [
-                    'number' => 2,
-                    'size'   => 800
+                    'number' => 1,
+                    'size'   => 1900
                 ]
             ),
 
