@@ -677,11 +677,66 @@ class Ec2PlatformModule extends AbstractAwsPlatformModule implements \Scalr\Modu
                 ]
             ),
 
+            'i3.large' => array(
+                'name' => 'i3.large',
+                'ram' => '15616',
+                'vcpus' => '2',
+                'disk' => '0.475',
+                'type' => 'SSD',
+                'ebsencryption' => true,
+                'ebsoptimized' => true,
+                'placementgroups' => true,
+                'enhancednetworking' => true
+            ),
+            'i3.xlarge' => array(
+                'name' => 'i3.xlarge',
+                'ram' => '31232',
+                'vcpus' => '4',
+                'disk' => '0.95',
+                'type' => 'SSD',
+                'ebsencryption' => true,
+                'ebsoptimized' => true,
+                'placementgroups' => true,
+                'enhancednetworking' => true
+            ),
             'i3.2xlarge' => array(
                 'name' => 'i3.2xlarge',
                 'ram' => '62464',
                 'vcpus' => '8',
                 'disk' => '1900',
+                'type' => 'SSD',
+                'ebsencryption' => true,
+                'ebsoptimized' => true,
+                'placementgroups' => true,
+                'enhancednetworking' => true
+            ),
+            'i3.4xlarge' => array(
+                'name' => 'i3.4xlarge',
+                'ram' => '124928',
+                'vcpus' => '16',
+                'disk' => '3800',
+                'type' => 'SSD',
+                'ebsencryption' => true,
+                'ebsoptimized' => true,
+                'placementgroups' => true,
+                'enhancednetworking' => true
+            ),
+            'i3.8xlarge' => array(
+                'name' => 'i3.8xlarge',
+                'ram' => '249856',
+                'vcpus' => '32',
+                'disk' => '7600',
+                'type' => 'SSD',
+                'ebsencryption' => true,
+                'ebsoptimized' => true,
+                'placementgroups' => true,
+                'enhancednetworking' => true
+            ),
+            'i3.16xlarge' => array(
+                'name' => 'i3.16xlarge',
+                'ram' => '499712',
+                'vcpus' => '64',
+                'disk' => '15200',
                 'type' => 'SSD',
                 'ebsencryption' => true,
                 'ebsoptimized' => true,
@@ -2389,10 +2444,6 @@ class Ec2PlatformModule extends AbstractAwsPlatformModule implements \Scalr\Modu
      */
     private function GetBlockDeviceMapping($instanceType, $prefix = '/dev/sd')
     {
-        if ($instanceType == 'i3.2xlarge') {
-          $prefix = '/dev/nvme';
-        }
-
         $retval = array();
 
         $instanceTypesInfo = $this->getInstanceTypes(null, null, true);
@@ -2401,8 +2452,7 @@ class Ec2PlatformModule extends AbstractAwsPlatformModule implements \Scalr\Modu
             $devicesNames = [ 'b', 'c', 'e', 'f', 'g', 'h', 'i', 'j', 'k1', 'k2', 'k3', 'k4', 'k5', 'k6', 'k7', 'k8', 'k9', 'l1', 'l2', 'l3', 'l4', 'l5', 'l6', 'l7' ];
             $namesOverrides = [
                 'd2.4xlarge' => [ 8 => 'k', 9 => 'l', 10 => 'm', 11 => 'n' ],
-                'd2.8xlarge' => [ 8 => 'k', 9 => 'l', 10 => 'm', 11 => 'n', 12 => 'o', 13 => 'p', 14 => 'q', 15 => 'r', 16 => 's', 17 => 't', 18 => 'u', 19 => 'v', 20 => 'w', 21 => 'x', 22 => 'y', 23 => 'd' ],
-                'i3.2xlarge' => [ 0 => '0n1', 1 => '1n1', 2 => '2n1', 3 => '3n1', 4 => '4n1', 5 => '5n1', 6 => '6n1', 7 => '7n1' ]
+                'd2.8xlarge' => [ 8 => 'k', 9 => 'l', 10 => 'm', 11 => 'n', 12 => 'o', 13 => 'p', 14 => 'q', 15 => 'r', 16 => 's', 17 => 't', 18 => 'u', 19 => 'v', 20 => 'w', 21 => 'x', 22 => 'y', 23 => 'd' ]
             ];
 
             if (isset($namesOverrides[$instanceType])) {
