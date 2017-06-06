@@ -2406,7 +2406,7 @@ class Ec2PlatformModule extends AbstractAwsPlatformModule implements \Scalr\Modu
             $namesOverrides = [
                 'd2.4xlarge' => [ 8 => 'k', 9 => 'l', 10 => 'm', 11 => 'n' ],
                 'd2.8xlarge' => [ 8 => 'k', 9 => 'l', 10 => 'm', 11 => 'n', 12 => 'o', 13 => 'p', 14 => 'q', 15 => 'r', 16 => 's', 17 => 't', 18 => 'u', 19 => 'v', 20 => 'w', 21 => 'x', 22 => 'y', 23 => 'd' ],
-                'i3.2xlarge' => [ 1 => '0n1' ]
+                'i3.2xlarge' => [ 0 => '0n1', 1 => '0n2', 2 => '0n3', 3 => '0n4', 4 => '0n5', 5 => '0n6', 6 => '0n7', 7 => '0n8', 8 => '0n8', 9 => '0n10', 10 => '0n11', 11 => '0n12', 12 => '0n13', 13 => '0n14', 14 => '0n15', 15 => '0n16', 16 => '0n17', 17 => '0n18', 18 => '0n19', 19 => '0n20', 20 => '0n21', 21 => '0n22', 22 => '0n23', 23 => '0n24']
             ];
 
             if (isset($namesOverrides[$instanceType])) {
