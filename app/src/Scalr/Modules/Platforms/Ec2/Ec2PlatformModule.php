@@ -2394,7 +2394,7 @@ class Ec2PlatformModule extends AbstractAwsPlatformModule implements \Scalr\Modu
     private function GetBlockDeviceMapping($instanceType, $prefix = '/dev/sd')
     {
         if ($instanceType == 'i3.2xlarge') {
-          $prefix = '/dev/nvme'
+          $prefix = '/dev/nvme';
         }
 
         $retval = array();
