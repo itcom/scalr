@@ -708,11 +708,7 @@ class Ec2PlatformModule extends AbstractAwsPlatformModule implements \Scalr\Modu
                 'ebsencryption' => true,
                 'ebsoptimized' => true,
                 'placementgroups' => true,
-                'enhancednetworking' => true,
-                'instancestore' => [
-                    'number' => 1,
-                    'size'   => 1800
-                ]
+                'enhancednetworking' => true
             ),
             'i3.4xlarge' => array(
                 'name' => 'i3.4xlarge',
