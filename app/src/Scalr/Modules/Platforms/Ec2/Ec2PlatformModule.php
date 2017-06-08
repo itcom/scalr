@@ -2368,6 +2368,12 @@ class Ec2PlatformModule extends AbstractAwsPlatformModule implements \Scalr\Modu
             }
         }
 
+        foreach ($this->GetBlockDeviceMapping($launchOptions->serverType) as $bdm) {
+            if ($iType == 'i3.2xlarge') {
+                $runInstanceRequest->appendBlockDeviceMapping($bdm);
+            }
+        }
+
         if ($result->instancesSet->get(0)->instanceId) {
             $instanceTypeInfo = $this->getInstanceType(
                 $runInstanceRequest->instanceType,
@@ -2450,6 +2456,10 @@ class Ec2PlatformModule extends AbstractAwsPlatformModule implements \Scalr\Modu
      */
     private function GetBlockDeviceMapping($instanceType, $prefix = '/dev/sd')
     {
+        if ($instanceType == 'i3.2xlarge') {
+          $prefix = '/dev/nvme';
+        }
+
         $retval = array();
 
         $instanceTypesInfo = $this->getInstanceTypes(null, null, true);
@@ -2458,7 +2468,8 @@ class Ec2PlatformModule extends AbstractAwsPlatformModule implements \Scalr\Modu
             $devicesNames = [ 'b', 'c', 'e', 'f', 'g', 'h', 'i', 'j', 'k1', 'k2', 'k3', 'k4', 'k5', 'k6', 'k7', 'k8', 'k9', 'l1', 'l2', 'l3', 'l4', 'l5', 'l6', 'l7' ];
             $namesOverrides = [
                 'd2.4xlarge' => [ 8 => 'k', 9 => 'l', 10 => 'm', 11 => 'n' ],
-                'd2.8xlarge' => [ 8 => 'k', 9 => 'l', 10 => 'm', 11 => 'n', 12 => 'o', 13 => 'p', 14 => 'q', 15 => 'r', 16 => 's', 17 => 't', 18 => 'u', 19 => 'v', 20 => 'w', 21 => 'x', 22 => 'y', 23 => 'd' ]
+                'd2.8xlarge' => [ 8 => 'k', 9 => 'l', 10 => 'm', 11 => 'n', 12 => 'o', 13 => 'p', 14 => 'q', 15 => 'r', 16 => 's', 17 => 't', 18 => 'u', 19 => 'v', 20 => 'w', 21 => 'x', 22 => 'y', 23 => 'd' ],
+                'i3.2xlarge' => [ 0 => '0n1', 1 => '1n1', 2 => '2n1', 3 => '3n1', 4 => '4n1', 5 => '5n1', 6 => '6n1', 7 => '7n1' ]
             ];
 
             if (isset($namesOverrides[$instanceType])) {
