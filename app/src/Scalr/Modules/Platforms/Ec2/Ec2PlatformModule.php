@@ -2281,7 +2281,9 @@ class Ec2PlatformModule extends AbstractAwsPlatformModule implements \Scalr\Modu
         }
 
         foreach ($this->GetBlockDeviceMapping($launchOptions->serverType) as $bdm) {
-            $runInstanceRequest->appendBlockDeviceMapping($bdm);
+            if ($iType != 'i3.2xlarge') {
+                $runInstanceRequest->appendBlockDeviceMapping($bdm);
+            }
         }
 
         $placementData = $this->GetPlacementGroupData($launchOptions->serverType, $DBServer, $placementData);
