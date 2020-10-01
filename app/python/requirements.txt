@@ -4,7 +4,7 @@ docopt
 boto==2.39.0
 pyyaml==3.11
 gevent==1.0.1
-psutil==3.2.2
+psutil==5.6.6
 pymysql==0.7.1
 httplib2
 cherrypy==5.0.1
