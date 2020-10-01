@@ -2,7 +2,7 @@ oauth2client==2.0.1
 pytz
 docopt
 boto==2.39.0
-pyyaml==3.11
+pyyaml==5.1
 gevent==1.0.1
 psutil==3.2.2
 pymysql==0.7.1
